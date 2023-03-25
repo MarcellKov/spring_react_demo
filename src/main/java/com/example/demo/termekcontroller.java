@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -27,8 +29,8 @@ public class termekcontroller {
     
 
     @GetMapping("/termekek")
-    public Object[] termek(){
-        return repo.findAll().toArray();
+    public List<Termek> termek(){
+        return repo.findAll();
     }
 
     @PostMapping("/bovit")
@@ -38,7 +40,7 @@ public class termekcontroller {
     }
 
     @GetMapping("/termekek/{id}")
-    public void frissit(@PathVariable String id ){
+    public void frissit(@PathVariable() String id ){
         Criteria c=Criteria.where("id").is(id);
         Query q=Query.query(c);
         Termek termek=template.findOne(q,Termek.class);

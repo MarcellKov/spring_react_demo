@@ -2,6 +2,8 @@ package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 
 
@@ -14,9 +16,11 @@ public class DemoApplication {
 
 }
 
+@Document(collection = "termek")
 class Termek{
 	public int left;
 	public String name;
+	@Id
 	public String id;
 	public Termek(String name,int left,String id){
 		this.name=name;
